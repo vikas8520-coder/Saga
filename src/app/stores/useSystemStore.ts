@@ -134,11 +134,24 @@ export const useSystemStore = create<SystemStore>((set) => ({
     { id: "p1inv", name: "p1-invoice", role: "Invoice gen", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "P1", avatar: "🧾", status: "idle", color: AGENT_COLORS.p1inv },
     { id: "p1email", name: "p1-email-bot", role: "Email drip", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "P1", avatar: "📧", status: "idle", color: AGENT_COLORS.p1email },
     { id: "p1comp", name: "p1-compliance", role: "Legal check", model: "Haiku", type: "spawned", mem: "SHARED", project: "P1", avatar: "📋", status: "archived", color: AGENT_COLORS.p1comp },
-    // Custom bots (infra + UI/UX)
-    { id: "deployer", name: "deployer", role: "Deploy Figma exports to repos", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "universal", avatar: "🚀", status: "active", color: AGENT_COLORS.deployer },
-    { id: "tester", name: "tester", role: "Build and health checks", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "universal", avatar: "🧪", status: "active", color: AGENT_COLORS.tester },
+    // Custom bots — Infrastructure (Atlas)
+    { id: "deployer", name: "deployer", role: "Deploy Figma exports", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "universal", avatar: "🚀", status: "active", color: AGENT_COLORS.deployer },
+    { id: "tester", name: "tester", role: "Build & health checks", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "universal", avatar: "🧪", status: "active", color: AGENT_COLORS.tester },
     { id: "context-bot", name: "context-bot", role: "System state sharing", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "📡", status: "active", color: AGENT_COLORS['context-bot'] },
+    { id: "monitor", name: "monitor", role: "URL health & uptime", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "universal", avatar: "💚", status: "active", color: '#10B981' },
+    { id: "cleaner", name: "cleaner", role: "Cache & temp cleanup", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "universal", avatar: "🧹", status: "active", color: '#78716C' },
+    { id: "backup-bot", name: "backup-bot", role: "Config & state backup", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "universal", avatar: "💾", status: "active", color: '#06B6D4' },
+    { id: "scheduler", name: "scheduler", role: "Task scheduling", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "📅", status: "active", color: '#14B8A6' },
+    // Custom bots — Build (Vida)
     { id: "uiux-bot", name: "uiux-bot", role: "UI/UX scaffold & audit", model: "Haiku", type: "spawned", mem: "SELECTIVE", project: "universal", avatar: "🎨", status: "active", color: AGENT_COLORS['uiux-bot'] },
+    { id: "git-bot", name: "git-bot", role: "Git stats & branches", model: "Haiku", type: "spawned", mem: "SELECTIVE", project: "universal", avatar: "📊", status: "active", color: '#3B82F6' },
+    { id: "doc-bot", name: "doc-bot", role: "Auto-documentation", model: "Haiku", type: "spawned", mem: "SELECTIVE", project: "universal", avatar: "📝", status: "active", color: '#6366F1' },
+    { id: "perf-bot", name: "perf-bot", role: "Bundle & build perf", model: "Haiku", type: "spawned", mem: "SELECTIVE", project: "universal", avatar: "⚡", status: "active", color: '#F97316' },
+    { id: "sync-bot", name: "sync-bot", role: "Config sync between repos", model: "Haiku", type: "spawned", mem: "SELECTIVE", project: "universal", avatar: "🔄", status: "active", color: '#22D3EE' },
+    // Custom bots — Governance (Aegis)
+    { id: "dep-bot", name: "dep-bot", role: "Dependency auditing", model: "Haiku", type: "spawned", mem: "SELECTIVE", project: "universal", avatar: "📦", status: "active", color: '#F59E0B' },
+    { id: "analytics", name: "analytics", role: "Performance & cost tracking", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "📈", status: "active", color: '#8B5CF6' },
+    { id: "cost-bot", name: "cost-bot", role: "API cost projections", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "💰", status: "active", color: '#F59E0B' },
   ],
   
   sessions: [
