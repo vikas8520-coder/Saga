@@ -20,6 +20,10 @@ export const AGENT_COLORS = {
   'p2email': '#F59E0B',
   'p1stalker': '#6366F1',
   'p2content': '#14B8A6',
+  'deployer': '#06B6D4',
+  'tester': '#10B981',
+  'context-bot': '#8B5CF6',
+  'uiux-bot': '#A855F7',
 } as const;
 
 export type AgentStatus = 'active' | 'idle' | 'thinking' | 'error' | 'archived';
@@ -130,6 +134,11 @@ export const useSystemStore = create<SystemStore>((set) => ({
     { id: "p1inv", name: "p1-invoice", role: "Invoice gen", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "P1", avatar: "🧾", status: "idle", color: AGENT_COLORS.p1inv },
     { id: "p1email", name: "p1-email-bot", role: "Email drip", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "P1", avatar: "📧", status: "idle", color: AGENT_COLORS.p1email },
     { id: "p1comp", name: "p1-compliance", role: "Legal check", model: "Haiku", type: "spawned", mem: "SHARED", project: "P1", avatar: "📋", status: "archived", color: AGENT_COLORS.p1comp },
+    // Custom bots (infra + UI/UX)
+    { id: "deployer", name: "deployer", role: "Deploy Figma exports to repos", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "universal", avatar: "🚀", status: "active", color: AGENT_COLORS.deployer },
+    { id: "tester", name: "tester", role: "Build and health checks", model: "Haiku", type: "spawned", mem: "ISOLATED", project: "universal", avatar: "🧪", status: "active", color: AGENT_COLORS.tester },
+    { id: "context-bot", name: "context-bot", role: "System state sharing", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "📡", status: "active", color: AGENT_COLORS['context-bot'] },
+    { id: "uiux-bot", name: "uiux-bot", role: "UI/UX scaffold & audit", model: "Haiku", type: "spawned", mem: "SELECTIVE", project: "universal", avatar: "🎨", status: "active", color: AGENT_COLORS['uiux-bot'] },
   ],
   
   sessions: [
