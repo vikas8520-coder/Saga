@@ -29,6 +29,8 @@ export const AGENT_COLORS = {
   'competitor-watcher': '#EF4444',
   'log-analyzer': '#F97316',
   'revenue-tracker': '#10B981',
+  'dev-watcher': '#7C3AED',
+  'pattern-miner': '#A855F7',
 } as const;
 
 export type AgentStatus = 'active' | 'idle' | 'thinking' | 'error' | 'archived';
@@ -163,6 +165,8 @@ export const useSystemStore = create<SystemStore>((set) => ({
     { id: "competitor-watcher", name: "competitor-watcher", role: "Competitor monitoring", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "🕵️", status: "active", color: AGENT_COLORS['competitor-watcher'] },
     { id: "log-analyzer", name: "log-analyzer", role: "Log analysis & error detection", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "📋", status: "active", color: AGENT_COLORS['log-analyzer'] },
     { id: "revenue-tracker", name: "revenue-tracker", role: "Income & churn tracking", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "💵", status: "active", color: AGENT_COLORS['revenue-tracker'] },
+    { id: "dev-watcher", name: "dev-watcher", role: "Dev activity observer", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "👀", status: "active", color: AGENT_COLORS['dev-watcher'] },
+    { id: "pattern-miner", name: "pattern-miner", role: "Extract patterns & teach bots", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "🧬", status: "active", color: AGENT_COLORS['pattern-miner'] },
   ],
   
   sessions: [
