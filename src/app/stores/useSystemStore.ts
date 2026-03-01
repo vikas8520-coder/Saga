@@ -26,6 +26,9 @@ export const AGENT_COLORS = {
   'uiux-bot': '#A855F7',
   'explorer': '#22D3EE',
   'bot-tracker': '#F472B6',
+  'competitor-watcher': '#EF4444',
+  'log-analyzer': '#F97316',
+  'revenue-tracker': '#10B981',
 } as const;
 
 export type AgentStatus = 'active' | 'idle' | 'thinking' | 'error' | 'archived';
@@ -157,6 +160,9 @@ export const useSystemStore = create<SystemStore>((set) => ({
     // Self-learning system
     { id: "explorer", name: "explorer", role: "Web research & knowledge", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "🔍", status: "active", color: AGENT_COLORS.explorer },
     { id: "bot-tracker", name: "bot-tracker", role: "Monitor all bots", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "👁️", status: "active", color: AGENT_COLORS['bot-tracker'] },
+    { id: "competitor-watcher", name: "competitor-watcher", role: "Competitor monitoring", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "🕵️", status: "active", color: AGENT_COLORS['competitor-watcher'] },
+    { id: "log-analyzer", name: "log-analyzer", role: "Log analysis & error detection", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "📋", status: "active", color: AGENT_COLORS['log-analyzer'] },
+    { id: "revenue-tracker", name: "revenue-tracker", role: "Income & churn tracking", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "💵", status: "active", color: AGENT_COLORS['revenue-tracker'] },
   ],
   
   sessions: [
