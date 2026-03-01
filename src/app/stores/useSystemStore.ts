@@ -24,6 +24,8 @@ export const AGENT_COLORS = {
   'tester': '#10B981',
   'context-bot': '#8B5CF6',
   'uiux-bot': '#A855F7',
+  'explorer': '#22D3EE',
+  'bot-tracker': '#F472B6',
 } as const;
 
 export type AgentStatus = 'active' | 'idle' | 'thinking' | 'error' | 'archived';
@@ -152,6 +154,9 @@ export const useSystemStore = create<SystemStore>((set) => ({
     { id: "dep-bot", name: "dep-bot", role: "Dependency auditing", model: "Haiku", type: "spawned", mem: "SELECTIVE", project: "universal", avatar: "📦", status: "active", color: '#F59E0B' },
     { id: "analytics", name: "analytics", role: "Performance & cost tracking", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "📈", status: "active", color: '#8B5CF6' },
     { id: "cost-bot", name: "cost-bot", role: "API cost projections", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "💰", status: "active", color: '#F59E0B' },
+    // Self-learning system
+    { id: "explorer", name: "explorer", role: "Web research & knowledge", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "🔍", status: "active", color: AGENT_COLORS.explorer },
+    { id: "bot-tracker", name: "bot-tracker", role: "Monitor all bots", model: "Haiku", type: "spawned", mem: "SHARED", project: "universal", avatar: "👁️", status: "active", color: AGENT_COLORS['bot-tracker'] },
   ],
   
   sessions: [
