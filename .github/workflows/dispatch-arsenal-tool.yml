@@ -1,0 +1,121 @@
+name: Dispatch Tool to AIArsenal
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Tool name"
+        required: true
+        type: string
+      url:
+        description: "Tool URL"
+        required: true
+        type: string
+      category:
+        description: "Category"
+        required: true
+        type: choice
+        options:
+          - Developer Tools
+          - End-User Tools
+          - Creative AI
+          - Open-Source Models
+          - Infrastructure
+          - Research & Education
+          - Automation & Agents
+          - Business AI
+          - Safety & Ethics
+          - Token Economy
+          - AI Income
+          - Cost Optimization
+          - Personal AI Systems
+      subcategory:
+        description: "Subcategory (e.g. Coding Assistants, APIs & Inference)"
+        required: true
+        type: string
+      desc:
+        description: "Short description (1 line)"
+        required: true
+        type: string
+      detail:
+        description: "Detailed description (1-2 paragraphs)"
+        required: true
+        type: string
+      free:
+        description: "What's free"
+        required: true
+        type: string
+      company:
+        description: "Company name"
+        required: true
+        type: string
+      oss:
+        description: "Open source?"
+        required: true
+        type: choice
+        options:
+          - "false"
+          - "true"
+      privacy:
+        description: "Privacy notes"
+        required: false
+        type: string
+      tags:
+        description: "Comma-separated tags (e.g. coding, agent, local)"
+        required: true
+        type: string
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch to AIArsenal
+        env:
+          ARSENAL_PAT: ${{ secrets.ARSENAL_DISPATCH_PAT }}
+          INPUT_NAME: ${{ inputs.name }}
+          INPUT_URL: ${{ inputs.url }}
+          INPUT_CATEGORY: ${{ inputs.category }}
+          INPUT_SUBCATEGORY: ${{ inputs.subcategory }}
+          INPUT_DESC: ${{ inputs.desc }}
+          INPUT_DETAIL: ${{ inputs.detail }}
+          INPUT_FREE: ${{ inputs.free }}
+          INPUT_COMPANY: ${{ inputs.company }}
+          INPUT_OSS: ${{ inputs.oss }}
+          INPUT_PRIVACY: ${{ inputs.privacy }}
+          INPUT_TAGS: ${{ inputs.tags }}
+        run: |
+          PAYLOAD=$(python3 << 'PYEOF'
+          import json, os
+
+          tags = [t.strip() for t in os.environ["INPUT_TAGS"].split(",") if t.strip()]
+
+          tool = {
+              "name": os.environ["INPUT_NAME"],
+              "url": os.environ["INPUT_URL"],
+              "category": os.environ["INPUT_CATEGORY"],
+              "subcategory": os.environ["INPUT_SUBCATEGORY"],
+              "desc": os.environ["INPUT_DESC"],
+              "detail": os.environ["INPUT_DETAIL"],
+              "free": os.environ["INPUT_FREE"],
+              "company": os.environ["INPUT_COMPANY"],
+              "oss": os.environ["INPUT_OSS"] == "true",
+              "privacy": os.environ.get("INPUT_PRIVACY", ""),
+              "tags": tags,
+          }
+
+          payload = {"event_type": "new-tool", "client_payload": {"tool": tool}}
+          print(json.dumps(payload))
+          PYEOF
+          )
+
+          echo "Dispatching: ${INPUT_NAME}"
+
+          curl -X POST \
+            -H "Authorization: Bearer ${ARSENAL_PAT}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/vikas8520-coder/AIArsenal/dispatches \
+            -d "${PAYLOAD}" \
+            --fail --show-error
+
+          echo "✅ Dispatched to AIArsenal successfully"
